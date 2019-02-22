@@ -13,13 +13,17 @@ var client = new pg.Client(conString);
 
 client.connect();
 
-var query = client.query("select * from salesforce.contact"); 
-console.log(query); 
+
 
 
 
 
 app.set('port', process.env.PORT || 3001);
+app.get('/', function(request, response) {
+    response.send('Hello World!');
+    var query = client.query("select * from salesforce.contact"); 
+    response.send(query);
+    });
 
 app.use(express.static(__dirname + '/client')); 
 app.use(errorHandler());
