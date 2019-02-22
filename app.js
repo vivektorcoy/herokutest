@@ -20,7 +20,7 @@ client.connect();
 
 app.set('port', process.env.PORT || 3001);
 app.get('/', function(request, response) {
-    response.send('Hello World!');
+    //response.send('Hello World!');
     var query = client.query("select * from salesforce.contact"); 
     response.send(query);
     });
