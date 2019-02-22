@@ -21,14 +21,15 @@ app.get('/', function(request, response) {
     //response.send('Hello World!');
     //var query = client.query("select * from salesforce.contact;"); 
     
-    var query = client.query('select Id from salesforce.contact;', (err, res) => {
+    var query = client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
           console.log(JSON.stringify(row));
+          response.send(JSON.stringify(row));
         }
         client.end();
     });
-    response.send(JSON.stringify(query));
+    
 });
 
 app.use(errorHandler());
