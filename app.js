@@ -20,14 +20,16 @@ app.set('port', process.env.PORT || 3001);
 app.get('/', function(request, response) {
     //response.send('Hello World!');
     var query = client.query("select * from salesforce.contact;"); 
-    response.send(query);
-    /*client.query('select * from salesforce.contact;', (err, res) => {
+    
+    /*var query = client.query('select * from salesforce.contact;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
           console.log(JSON.stringify(row));
         }
         client.end();
     });*/
+    response.send(query);
+});
 
 app.use(express.static(__dirname + '/client')); 
 app.use(errorHandler());
