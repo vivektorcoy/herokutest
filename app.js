@@ -21,14 +21,23 @@ app.get('/', function(request, response) {
     //response.send('Hello World!');
     //var query = client.query("select * from salesforce.contact;"); 
     
-    var query = client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
-        if (err) throw err;
-        var contactList = [];
+    client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
+        if(err) throw err;
+        var fetchedContactList = [];
         for (let row of res.rows) {
-          console.log(JSON.stringify(row));
-          contactList.push(row);
+            fetchedContactList.push(row);
         }
-        response.send(JSON.stringify(contactList));
+        //response.send(JSON.stringify(contactList));
+        client.end();
+    });
+
+    client.query('UPDATE salesforce.Contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid',(err, res) => {
+        if(err) throw err;
+        var toUpdateContactList = [];
+        for(let row of res.rows){
+            toUpdateContactList.push(row);
+        }
+        response.send(JSON.stringify(toUpdateContactList));
         client.end();
     });
     
