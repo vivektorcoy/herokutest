@@ -31,7 +31,7 @@ app.get('/', function(request, response) {
         client.end();
     });
 
-    client.query('UPDATE salesforce.Contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid',(err, res) => {
+    client.query('UPDATE salesforce.contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid',(err, res) => {
         if(err) throw err;
         var toUpdateContactList = [];
         for(let row of res.rows){
