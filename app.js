@@ -23,11 +23,12 @@ app.get('/', function(request, response) {
     
     var query = client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
         if (err) throw err;
-        response.send(JSON.stringify(response.rows));
-        /*for (let row of res.rows) {
+        var contactList = [];
+        for (let row of response.rows) {
           console.log(JSON.stringify(row));
-          response.send(JSON.stringify(row));
-        }*/
+          contactList.push(row);
+        }
+        response.send(JSON.stringify(contactList));
         client.end();
     });
     
