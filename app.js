@@ -24,7 +24,7 @@ app.get('/', function(request, response) {
     var query = client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
         if (err) throw err;
         var contactList = [];
-        for (let row of response.rows) {
+        for (let row of res.rows) {
           console.log(JSON.stringify(row));
           contactList.push(row);
         }
