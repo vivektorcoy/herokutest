@@ -10,7 +10,7 @@ var pg = require('pg');
 
 //var conString = process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres";
 //var client = new pg.Client(conString);
-var client = new Client({
+var client = new pg.Client({
     connectionString: process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres",
     ssl: true,
   });
