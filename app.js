@@ -8,27 +8,27 @@ app = express();
 var pg = require('pg');  
 //You can run command "heroku config" to see what is Database URL from Heroku belt
 
-var conString = process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres";
-var client = new pg.Client(conString);
-/*var client = new Client({
+//var conString = process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres";
+//var client = new pg.Client(conString);
+var client = new Client({
     connectionString: process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres",
     ssl: true,
   });
-client.connect();*/
+client.connect();
 
 app.set('port', process.env.PORT || 3001);
 app.get('/', function(request, response) {
     //response.send('Hello World!');
-    var query = client.query("select * from salesforce.contact;"); 
+    //var query = client.query("select * from salesforce.contact;"); 
     
-    /*var query = client.query('select * from salesforce.contact;', (err, res) => {
+    var query = client.query('select Id from salesforce.contact;', (err, res) => {
         if (err) throw err;
         for (let row of res.rows) {
           console.log(JSON.stringify(row));
         }
         client.end();
-    });*/
-    response.send(query);
+    });
+    response.send(JSON.stringify(query));
 });
 
 app.use(errorHandler());
