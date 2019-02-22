@@ -31,7 +31,6 @@ app.get('/', function(request, response) {
     response.send(query);
 });
 
-app.use(express.static(__dirname + '/client')); 
 app.use(errorHandler());
 app.listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
