@@ -10,20 +10,24 @@ var pg = require('pg');
 
 var conString = process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres";
 var client = new pg.Client(conString);
-
-client.connect();
-
-
-
-
-
+/*var client = new Client({
+    connectionString: process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres",
+    ssl: true,
+  });
+client.connect();*/
 
 app.set('port', process.env.PORT || 3001);
 app.get('/', function(request, response) {
     //response.send('Hello World!');
-    var query = client.query("select * from salesforce.contact"); 
+    var query = client.query("select * from salesforce.contact;"); 
     response.send(query);
-    });
+    /*client.query('select * from salesforce.contact;', (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+          console.log(JSON.stringify(row));
+        }
+        client.end();
+    });*/
 
 app.use(express.static(__dirname + '/client')); 
 app.use(errorHandler());
