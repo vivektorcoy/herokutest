@@ -20,27 +20,18 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-     var lead_id = req.body.lead_id;
-     var opp_id = req.body.opp_id;
-     var con_id = req.body.con_id;
-     var LoanExt_id = req.body.LoanExt_id;
-     var mobile_number = req.body.mobile_number;
-     var device_ID = req.body.device_ID;
-     var mpin = req.body.mpin;
+     console.log(req.body.con_id);
+     console.log(req.body.device_ID);
+     console.log(req.body.mpin);
 
-     /*var queryString = 'UPDATE salesforce.contact SET';
-     queryString += 'SET IVL_Device_Id__c= \''+device_ID+'\'';
-     queryString += 'IVL_MPIN__c= \''+mpin+'\'';
-     queryString += 'WHERE sfid = \''+con_id+'\'';*/
-
-     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2)  WHERE sfid = ($3)',
+    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3)',
      [req.body.device_ID, req.body.mpin, req.body.con_id],
      function(err, result) {
          if (err){
              throw err;
          }
          else{
-             res.send('Records updated successfully!');
+             res.send(req.body.con_id+'--'+req.body.device_ID+'---'+req.body.mpin);
          }
      }
     );
