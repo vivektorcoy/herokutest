@@ -17,7 +17,7 @@ var client = new pg.Client({
 client.connect();
 
 app.set('port', process.env.PORT || 3001);
-app.get('/', function(request, response) {
+app.get('/fetchContacts', function(request, response) {
     //response.send('Hello World!');
     //var query = client.query("select * from salesforce.contact;");
 
