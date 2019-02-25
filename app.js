@@ -29,7 +29,7 @@ app.get('/fetchContacts', function(request, response) {
         }
         response.send(JSON.stringify(fetchedContactList));
 
-        client.end();
+        //client.end();
         response.end();
     });
 
