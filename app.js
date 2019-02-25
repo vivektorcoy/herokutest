@@ -20,10 +20,6 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-     console.log(req.body.con_id);
-     console.log(req.body.device_ID);
-     console.log(req.body.mpin);
-
     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3)',
      [req.body.device_ID, req.body.mpin, req.body.con_id],
      function(err, result) {
