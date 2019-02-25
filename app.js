@@ -4,37 +4,46 @@ request = require('request'),
 bodyParser = require('body-parser'),
 errorHandler = require('express-error-handler'),
 app = express();
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({
-    extended: true
-  }));
 
-var pg = require('pg');
+var pg = require('pg');  
+//You can run command "heroku config" to see what is Database URL from Heroku belt
 
 var client = new pg.Client({
-    connectionString: process.env.DATABASE_URL || 'postgres://tnvkutdzqbdptn:38dd0a8b1255d1a30f01f94bc771e1095e51956398f1c755e5d510fec2e26340@ec2-107-20-167-11.compute-1.amazonaws.com',
+    connectionString: process.env.DATABASE_URL || "postgres://postgres:Welcome123@localhost:5432/postgres",
     ssl: true,
   });
-
 client.connect();
 
- app.post('/updateContact',function(req,res)
- {
-    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3)',
-     [req.body.device_ID, req.body.mpin, req.body.con_id],
-     function(err, result) {
-         if (err){
-             throw err;
-         }
-         else{
-             res.send(req.body.con_id+'--'+req.body.device_ID+'---'+req.body.mpin);
-             res.end();
-         }
-     }
-    );
- });
+app.set('port', process.env.PORT || 3001);
+app.get('/fetchContacts', function(request, response) {
+    //response.send('Hello World!');
+    //var query = client.query("select * from salesforce.contact;");
 
- app.set('port', process.env.PORT || 3001);
- app.listen(app.get('port'), function () {
+    /*client.query('select sfId, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
+        if(err) throw err;
+        var fetchedContactList = [];
+        for (let row of res.rows) {
+            fetchedContactList.push(row);
+        }
+        response.send(JSON.stringify(fetchedContactList));
+
+        //client.end();
+        response.end();
+    });*/
+
+    client.query('UPDATE salesforce.contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid;',(err, res) => {
+        if(err) throw err;
+        var toUpdateContactList = [];
+        for(let row of res.rows){
+            toUpdateContactList.push(row);
+        }
+        response.send(JSON.stringify(toUpdateContactList));
+        client.end();
+    });
+
+});
+
+app.use(errorHandler());
+app.listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
 });
