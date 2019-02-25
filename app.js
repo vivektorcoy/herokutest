@@ -18,16 +18,16 @@ var client = new pg.Client({
 
 client.connect();
 
- app.post('/updateContact',function(req,res)
+ app.put('/updateContact',function(req,res)
  {
-    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3) returning sfid;',
+    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3)',
      [req.body.device_ID, req.body.mpin, req.body.con_id],
      function(err, result) {
          if (err){
              throw err;
          }
          else{
-            res.send(JSON.stringify(res.rows));
+            res.send('Record updated successfully!');
             res.end();
          }
      }
