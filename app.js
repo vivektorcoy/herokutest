@@ -33,16 +33,17 @@ client.connect();
      queryString += 'IVL_MPIN__c= \''+mpin+'\'';
      queryString += 'WHERE sfid = \''+con_id+'\'';*/
 
-     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = ${device_ID}, IVL_MPIN__c=${mpin}  WHERE ID = ${con_id}',(err, res) => {
-        if(err)
-        {
-            throw err;
-        }
-        else
-        {
-            res.send('Record updated successfully');
-        }
-    });
+     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2)  WHERE sfid = ($3)',
+     [req.body.device_ID, req.body.mpin, req.body.id, req.body.con_id],
+     function(err, result) {
+         if (err){
+             throw err;
+         }
+         else{
+             res.send('Records updated successfully!');
+         }
+     }
+    );
  });
 
  app.set('port', process.env.PORT || 3001);
