@@ -20,15 +20,19 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3)',
+    client.query('UPDATE salesforce.contact SET IVL_Device_Id__c=($1), IVL_MPIN__c=($2)  WHERE sfid=($3) returning sfid;',
      [req.body.device_ID, req.body.mpin, req.body.con_id],
      function(err, result) {
          if (err){
              throw err;
          }
          else{
-             res.send(req.body.con_id+'--'+req.body.device_ID+'---'+req.body.mpin);
-             res.end();
+            var toUpdateContactList = [];
+            for(let row of res.rows){
+                toUpdateContactList.push(row);
+            }
+            res.send(JSON.stringify(toUpdateContactList));
+            res.end();
          }
      }
     );
