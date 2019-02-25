@@ -19,8 +19,8 @@ client.connect();
 app.set('port', process.env.PORT || 3001);
 app.get('/', function(request, response) {
     //response.send('Hello World!');
-    //var query = client.query("select * from salesforce.contact;"); 
-    
+    //var query = client.query("select * from salesforce.contact;");
+
     client.query('select sfId, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
         if(err) throw err;
         var fetchedContactList = [];
@@ -28,7 +28,9 @@ app.get('/', function(request, response) {
             fetchedContactList.push(row);
         }
         response.send(JSON.stringify(fetchedContactList));
+
         client.end();
+        response.end();
     });
 
     /*client.query('UPDATE salesforce.contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid;',(err, res) => {
@@ -40,7 +42,7 @@ app.get('/', function(request, response) {
         response.send(JSON.stringify(toUpdateContactList));
         client.end();
     });*/
-    
+
 });
 
 app.use(errorHandler());
