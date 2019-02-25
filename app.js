@@ -28,7 +28,7 @@ client.connect();
      var device_ID = req.body.device_ID;
      var mpin = req.body.mpin;
 
-     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = device_ID, IVL_MPIN__c=mpin  WHERE ID = con_id RETURNING sfid',(err, res) => {
+     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = device_ID, IVL_MPIN__c=mpin  WHERE sfid = con_id RETURNING sfid',(err, res) => {
         if(err)
         {
             throw err;
