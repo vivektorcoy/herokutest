@@ -27,11 +27,7 @@ client.connect();
              throw err;
          }
          else{
-            var toUpdateContactList = [];
-            for(let row of res.rows){
-                toUpdateContactList.push(row);
-            }
-            res.send(JSON.stringify(toUpdateContactList));
+            res.send(JSON.stringify(res.rows));
             res.end();
          }
      }
