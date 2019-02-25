@@ -28,6 +28,7 @@ client.connect();
          }
          else{
              res.send(req.body.con_id+'--'+req.body.device_ID+'---'+req.body.mpin);
+             res.end();
          }
      }
     );
