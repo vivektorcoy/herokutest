@@ -34,7 +34,7 @@ client.connect();
      queryString += 'WHERE sfid = \''+con_id+'\'';*/
 
      client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2)  WHERE sfid = ($3)',
-     [req.body.device_ID, req.body.mpin, req.body.id, req.body.con_id],
+     [req.body.device_ID, req.body.mpin, req.body.con_id],
      function(err, result) {
          if (err){
              throw err;
