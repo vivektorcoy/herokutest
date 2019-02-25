@@ -28,11 +28,12 @@ client.connect();
      var device_ID = req.body.device_ID;
      var mpin = req.body.mpin;
 
-     var queryString = 'UPDATE salesforce.contact SET';
+     /*var queryString = 'UPDATE salesforce.contact SET';
      queryString += 'SET IVL_Device_Id__c= \''+device_ID+'\'';
      queryString += 'IVL_MPIN__c= \''+mpin+'\'';
-     queryString += 'WHERE sfid = \''+con_id+'\'';
-     client.query(queryString,(err, res) => {
+     queryString += 'WHERE sfid = \''+con_id+'\'';*/
+
+     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = $6, IVL_MPIN__c=$7  WHERE ID = $3',(err, res) => {
         if(err)
         {
             throw err;
