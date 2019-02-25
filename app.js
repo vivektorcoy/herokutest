@@ -29,9 +29,9 @@ client.connect();
      var mpin = req.body.mpin;
 
      var queryString = 'UPDATE salesforce.contact SET';
-     queryString += 'SET IVL_Device_Id__c= '+device_ID;
-     queryString += 'IVL_MPIN__c= '+mpin;
-     queryString += 'WHERE sfid = '+con_id;
+     queryString += 'SET IVL_Device_Id__c= \''+device_ID+'\'';
+     queryString += 'IVL_MPIN__c= \''+mpin+'\'';
+     queryString += 'WHERE sfid = \''+con_id+'\'';
      client.query(queryString,(err, res) => {
         if(err)
         {
