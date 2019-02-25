@@ -33,7 +33,7 @@ client.connect();
      queryString += 'IVL_MPIN__c= \''+mpin+'\'';
      queryString += 'WHERE sfid = \''+con_id+'\'';*/
 
-     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = $6, IVL_MPIN__c=$7  WHERE ID = $3',(err, res) => {
+     client.query('UPDATE salesforce.contact SET IVL_Device_Id__c = ${device_ID}, IVL_MPIN__c=${mpin}  WHERE ID = ${con_id}',(err, res) => {
         if(err)
         {
             throw err;
