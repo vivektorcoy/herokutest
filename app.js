@@ -21,17 +21,17 @@ app.get('/', function(request, response) {
     //response.send('Hello World!');
     //var query = client.query("select * from salesforce.contact;"); 
     
-   /* client.query('select Id, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
+    client.query('select sfId, LastName, Email, MobilePhone from salesforce.contact;', (err, res) => {
         if(err) throw err;
         var fetchedContactList = [];
         for (let row of res.rows) {
             fetchedContactList.push(row);
         }
-        //response.send(JSON.stringify(contactList));
+        response.send(JSON.stringify(fetchedContactList));
         client.end();
-    });*/
+    });
 
-    client.query('UPDATE salesforce.contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid',(err, res) => {
+    /*client.query('UPDATE salesforce.contact SET Email = \'gg@kk.com\' WHERE LastName = \'Applicant1\' RETURNING sfid;',(err, res) => {
         if(err) throw err;
         var toUpdateContactList = [];
         for(let row of res.rows){
@@ -39,7 +39,7 @@ app.get('/', function(request, response) {
         }
         response.send(JSON.stringify(toUpdateContactList));
         client.end();
-    });
+    });*/
     
 });
 
