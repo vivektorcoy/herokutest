@@ -29,13 +29,11 @@ client.connect();
         }
         else
         {
-            //updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2),CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = ($3)';
-            updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = \''+req.body.device_ID+'\', IVL_MPIN__c=\''+req.body.mpin+'\',CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = \''+req.body.con_id+'\'';
+            updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2),CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = ($3)';
         }
-        console.log('update query :::: '+updatequery);
-        //client.query(updatequery,
-        //[req.body.device_ID, req.body.mpin, req.body.con_id],
+
         client.query(updatequery,
+        [req.body.device_ID, req.body.mpin, req.body.con_id],
         function(err, result) {
             if (err)
             {
@@ -68,7 +66,6 @@ client.connect();
     else
     {
         var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
-        //var apiresponse = {sucess:false,request: req.body}
         res.setHeader('Content-Type','application/json');
         res.send(JSON.stringify(apiresponse));
     }
