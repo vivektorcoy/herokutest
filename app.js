@@ -29,7 +29,8 @@ client.connect();
         }
         else
         {
-            updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2),CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = ($3)';
+            //updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2),CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = ($3)';
+            updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = \''+req.body.device_ID+'\', IVL_MPIN__c=\''+req.body.mpin+'\',CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = \''+req.body.con_id+'\'';
         }
         console.log('update query :::: '+updatequery);
         client.query(updatequery,
