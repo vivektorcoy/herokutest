@@ -31,7 +31,7 @@ client.connect();
         {
             updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2),CRD_Stage__c =\'Mobile Registered\'  WHERE sfid = ($3)';
         }
-
+        console.log('update query :::: '+updatequery);
         client.query(updatequery,
         [req.body.device_ID, req.body.mpin, req.body.con_id],
         function(err, result) {
