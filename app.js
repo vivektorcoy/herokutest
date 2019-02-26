@@ -65,9 +65,9 @@ client.connect();
     }
     else
     {
-        var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
+        //var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
         res.setHeader('Content-Type','application/json');
-        res.send(JSON.stringify(apiresponse));
+        res.send(JSON.stringify(req.body));
     }
      
 });
