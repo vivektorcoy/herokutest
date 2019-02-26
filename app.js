@@ -20,8 +20,6 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-  console.log('request body :::: '+req.body);
-  console.log('request mobile :::: '+req.body.mobile_number);
   if(req.body.mobile_number != null && req.body.mobile_number != '')
     {
         var updatequery;
