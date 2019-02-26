@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 var pg = require('pg');
 
 var client = new pg.Client({
-    connectionString: process.env.DATABASE_URL || 'postgres://tnvkutdzqbdptn:38dd0a8b1255d1a30f01f94bc771e1095e51956398f1c755e5d510fec2e26340@ec2-107-20-167-11.compute-1.amazonaws.com',
+    connectionString: process.env.DATABASE_URL || 'postgres://tnvkutdzqbdptn:38dd0a8b1255d1a30f01f94bc771e1095e51956398f1c755e5d510fec2e26340@ec2-107-20-167-11.compute-1.amazonaws.com:5432/d41ujuv92orjdv',
     ssl: true,
   });
 
