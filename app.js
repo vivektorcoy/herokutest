@@ -20,7 +20,9 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-    if(req.body.mobile_number != null && req.body.mobile_number != '')
+  console.log('request body :::: '+req.body);
+  console.log('request mobile :::: '+req.body.mobile_number);
+  if(req.body.mobile_number != null && req.body.mobile_number != '')
     {
         var updatequery;
         if(req.body.mpin == "" || req.body.mpin== null)
@@ -65,8 +67,8 @@ client.connect();
     }
     else
     {
-        //var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
-        var apiresponse = {sucess:false,request: req.body}
+        var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
+        //var apiresponse = {sucess:false,request: req.body}
         res.setHeader('Content-Type','application/json');
         res.send(JSON.stringify(apiresponse));
     }
