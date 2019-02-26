@@ -66,8 +66,9 @@ client.connect();
     else
     {
         //var apiresponse = {sucess:false,error_message: 'Please provide mobile number!'}
+        var apiresponse = {sucess:false,request: req.body}
         res.setHeader('Content-Type','application/json');
-        res.send(JSON.stringify(req.body));
+        res.send(JSON.stringify(apiresponse));
     }
      
 });
