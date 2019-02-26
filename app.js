@@ -23,7 +23,7 @@ client.connect();
     if(req.body.mobile_number != null && req.body.mobile_number != '')
     {
         var updatequery;
-        if(mpin == "" || mpin== null)
+        if(req.body.mpin == "" || req.body.mpin== null)
         {
             updatequery = 'UPDATE salesforce.contact SET IVL_Device_Id__c = ($1), IVL_MPIN__c=($2)  WHERE sfid = ($3)';      
         }
@@ -33,7 +33,7 @@ client.connect();
         }
 
         client.query(updatequery,
-        [device_ID, mpin, con_id],
+        [req.body.device_ID, req.body.mpin, req.body.con_id],
         function(err, result) {
             if (err)
             {
