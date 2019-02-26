@@ -20,7 +20,7 @@ client.connect();
 
  app.post('/updateContact',function(req,res)
  {
-  if(req.body.mobile_number != null && req.body.mobile_number != '')
+    if(req.body.mobile_number != null && req.body.mobile_number != '')
     {
         var updatequery;
         if(req.body.mpin == "" || req.body.mpin== null)
