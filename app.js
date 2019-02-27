@@ -24,6 +24,8 @@ app.post('/updateContact',function(req,res){
     mobileRegWebserviceRoute.mobileRegWebService(req,res,client);
 });
 
+app.set('port', process.env.PORT || 3001);
+
 app.listen(app.get('port'), function () {
     console.log('Server listening on port ' + app.get('port'));
 });
