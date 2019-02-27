@@ -19,7 +19,7 @@ var client = new pg.Client({
 client.connect();
 
 var mobileRegWebserviceRoute = require('./mobileregwebservice/mobileRegWebservice.js');
-dbRouters.getRecords(req, res, client, param, false);
+
 app.post('/updateContact',function(req,res){
     mobileRegWebserviceRoute.mobileRegWebService(req,res,client);
 });
