@@ -17,7 +17,7 @@ module.exports = {
 			function(err, result) {
 				if (err)
 				{
-					var apiresponse = {sucess:true,error_message: err}
+					var apiresponse = {sucess: true, error_message: err}
 					res.setHeader('Content-Type','application/json');
 					res.send(JSON.stringify(apiresponse));
 					client.query('INSERT INTO salesforce.IVL_Error_Log__c (IVL_API_Name__c,IVL_Is_Error_Exception__c,IVL_Contact__c,IVL_Request__c,IVL_Response__c,IVL_Type__c) VALUES(\'mobileregistration\',false,($1),($2),($3),\'inbound\')',
@@ -30,7 +30,7 @@ module.exports = {
 				}
 				else
 				{
-					var apiresponse = {sucess:true,error_message: null}
+					var apiresponse = {sucess: true, error_message: null}
 					res.setHeader('Content-Type','application/json');
 					res.send(JSON.stringify(apiresponse));
 					client.query('INSERT INTO salesforce.IVL_Error_Log__c (IVL_API_Name__c,IVL_Is_Error_Exception__c,IVL_Contact__c,IVL_Request__c,IVL_Response__c,IVL_Type__c) VALUES(\'mobileregistration\',false,($1),($2),($3),\'inbound\')',
@@ -45,7 +45,7 @@ module.exports = {
 		}
 		else
 		{
-			var apiresponse = {sucess:false, error_message: 'Please provide mobile number!'}
+			var apiresponse = {sucess: false, error_message: 'Please provide mobile number'}
 			res.setHeader('Content-Type','application/json');
 			res.send(JSON.stringify(apiresponse));
 		}

@@ -22,8 +22,12 @@ var mobileRegWebserviceRoute = require('./MobileRegWebservice/MobileRegWebservic
 var userSignupWebserviceRoute = require('./UserSignupWebservice/UserSignupWebservice.js');
 
 
-app.post('/updateContact',function(req,res){
+app.post('/mobileregistration',function(req,res){
     mobileRegWebserviceRoute.mobileRegWebService(req,res,client);
+});
+
+app.post('/usersignup',function(req,res){
+    userSignupWebserviceRoute.initiateWebService(req,res,client);
 });
 
 app.set('port', process.env.PORT || 3001);
