@@ -145,7 +145,8 @@ module.exports = {
 
 	getRecordIds: async function(req, res, client, cardId, userSignupWebserviceRoute) {
 		var mobileNumber = req.body.mobile_number;
-		var idJSONobject = {lead_record_id: '', opp_id: '', con_id: '', acc_id: ''};
+		var objCardJSON = {Name:'',CRD_Lead_Source__c:'',CRD_Card_Status__c:'',CRD_Card_Limit__c:'',CRD_Tenure_In_Months_Applied__c:'',CRD_Decline_Reason__c:'',CRD_Card_Number__c:''};
+		var idJSONobject = {lead_record_id: '', opp_id: '', con_id: '', acc_id: '',objCard: objCardJSON};
 
 		//RecordType ids
 		var contactDSARecordTypeId;
@@ -195,7 +196,15 @@ module.exports = {
 			if(contactRelatedCardForRecordIdsList != null && !contactRelatedCardForRecordIdsList.err && contactRelatedCardForRecordIdsList.length > 0)
 			{
 				idJSONobject.card_id = contactRelatedCardForRecordIdsList.rows[0].sfid;
-				//idJSONobject.objCard = lstContact[0].Cards__r[0]; //Have to do this
+				//Mapping card object fields
+				idJSONobject.objCard.CRD_Lead_Source__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Lead_Source__c;
+				idJSONobject.objCard.CRD_Card_Status__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Card_Status__c;
+				idJSONobject.objCard.CRD_Card_Limit__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Card_Limit__c;
+				idJSONobject.objCard.CRD_Tenure_In_Months_Applied__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Tenure_In_Months_Applied__c;
+				idJSONobject.objCard.CRD_Decline_Reason__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Decline_Reason__c;
+				idJSONobject.objCard.CRD_Card_Number__c = contactRelatedCardForRecordIdsList.rows[0].CRD_Card_Number__c;
+				idJSONobject.objCard.Name = contactRelatedCardForRecordIdsList.rows[0].Name;
+
 			}
 			else if(contactRelatedLeadForRecordIdsList != null && !contactRelatedLeadForRecordIdsList.err && contactRelatedLeadForRecordIdsList.length > 0)
 			{
