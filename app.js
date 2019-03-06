@@ -18,8 +18,8 @@ var client = new pg.Client({
 
 client.connect();
 
-var mobileRegWebserviceRoute = require('./MobileRegWebservice/MobileRegWebservice.js');
-var userSignupWebserviceRoute = require('./UserSignupWebservice/UserSignupWebservice.js');
+var mobileRegWebserviceRoute = require('./MobileRegWebservice.js');
+var userSignupWebserviceRoute = require('./UserSignupWebservice.js');
 
 
 app.post('/mobileregistration',function(req,res){
