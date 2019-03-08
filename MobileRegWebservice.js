@@ -23,8 +23,11 @@ module.exports = {
 
 					var param1 = 'IVL_Error_Log__c';
 					var param2 = 'IVL_API_Name__c=mobileregistration,IVL_Is_Error_Exception__c=true,IVL_Contact__c=($1),IVL_Request__c=($2),IVL_Response__c=($3),IVL_Type__c= inbound';
+					var queryData="SELECT INSERT_OPERATION(\'"+param1+"\',\'"+param2+"\')";
+					console.log("query data :::: "+queryData);
+
 					//client.query('INSERT INTO salesforce.IVL_Error_Log__c (IVL_API_Name__c,IVL_Is_Error_Exception__c,IVL_Contact__c,IVL_Request__c,IVL_Response__c,IVL_Type__c) VALUES(\'mobileregistration\',true,($1),($2),($3),\'inbound\')',
-					client.query("SELECT INSERT_OPERATION("+param1+","+param2+")",
+					client.query(queryData,
 					[req.body.con_id, req.body, JSON.stringify(apiresponse)],
 					function(err, result)
 					{
@@ -40,10 +43,11 @@ module.exports = {
 
 					var param1 = 'IVL_Error_Log__c';
 					var param2 = 'IVL_API_Name__c=mobileregistration,IVL_Is_Error_Exception__c=false,IVL_Contact__c=($1),IVL_Request__c=($2),IVL_Response__c=($3),IVL_Type__c= inbound';
-
+					var queryData="SELECT INSERT_OPERATION(\'"+param1+"\',\'"+param2+"\')";
+					console.log("query data :::: "+queryData);
 					//client.query('INSERT INTO salesforce.IVL_Error_Log__c (IVL_API_Name__c,IVL_Is_Error_Exception__c,IVL_Contact__c,IVL_Request__c,IVL_Response__c,IVL_Type__c) VALUES(\'mobileregistration\',false,($1),($2),($3),\'inbound\')',
 					//client.query("SELECT INSERT_OPERATION(IVL_Error_Log__c,IVL_API_Name__c=mobileregistration,IVL_Is_Error_Exception__c=false,IVL_Contact__c=($1),IVL_Request__c=($2),IVL_Response__c=($3),IVL_Type__c= inbound)",
-					client.query("SELECT INSERT_OPERATION("+param1+","+param2+")",
+					client.query(queryData,
 					[req.body.con_id, req.body, JSON.stringify(apiresponse)],
 					function(err, result)
 					{
