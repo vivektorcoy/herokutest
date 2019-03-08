@@ -50,7 +50,7 @@ module.exports = {
 
 					var param1 = 'IVL_Error_Log__c';
 					var param2 = 'IVL_API_Name__c=mobileregistration,IVL_Is_Error_Exception__c=false,IVL_Request__c= test_request,IVL_Response__c= test_response,IVL_Type__c= inbound';
-					var queryData="SELECT INSERT_OPERATION("+param1+","+param2+")";
+					var queryData="SELECT INSERT_OPERATION(\'"+param1+"\',\'"+param2+"\')";
 					console.log("query data else :::: "+queryData);
 					//client.query('INSERT INTO salesforce.IVL_Error_Log__c (IVL_API_Name__c,IVL_Is_Error_Exception__c,IVL_Contact__c,IVL_Request__c,IVL_Response__c,IVL_Type__c) VALUES(\'mobileregistration\',false,($1),($2),($3),\'inbound\')',
 					client.query(queryData,
